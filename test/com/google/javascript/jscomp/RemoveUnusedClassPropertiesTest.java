@@ -333,4 +333,11 @@ public final class RemoveUnusedClassPropertiesTest extends CompilerTestCase {
             "Object.defineProperties(C, {});2"));
   }
 
+  public void testClass_unused_getter_removed() {
+    setAcceptedLanguage(LanguageMode.ECMASCRIPT6);
+    enableTypeCheck();
+    test(
+        "class C{get unused(){return 2;}}",
+        "/** @constructor */ function C() {}");
+  }
 }
